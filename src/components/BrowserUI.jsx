@@ -21,11 +21,12 @@ const SECTIONS = {
 
 export default function BrowserUI({ onBackToTerminal }) {
   const [activeTab, setActiveTab] = useState(SECTIONS.SUMMARY);
-  const [url, setUrl] = useState(`${window.location.origin}/${SECTIONS.SUMMARY}`);
+  const baseLocation = window.location.origin + window.location.pathname;
+  const [url, setUrl] = useState(`${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${SECTIONS.SUMMARY}`);
 
   const navigate = (id) => {
     setActiveTab(id);
-    setUrl(`${window.location.origin}/${id}`);
+    setUrl(`${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${id}`);
   };
 
   return (

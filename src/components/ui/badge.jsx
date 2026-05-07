@@ -1,13 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-export type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | "ghost" | "link"
-
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: BadgeVariant;
-}
-
-const badgeVariants: Record<BadgeVariant, string> = {
+const badgeVariants = {
   default: "bg-[#00ff41] text-black hover:bg-[#00ff41]/80",
   secondary: "bg-zinc-800 text-zinc-300 hover:bg-zinc-700",
   destructive: "bg-red-500/10 text-red-500 hover:bg-red-500/20",
@@ -16,7 +10,7 @@ const badgeVariants: Record<BadgeVariant, string> = {
   link: "text-[#00ff41] underline-offset-4 hover:underline"
 }
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+const Badge = React.forwardRef(
   ({ className, variant = "default", children, ...props }, ref) => {
     return (
       <div

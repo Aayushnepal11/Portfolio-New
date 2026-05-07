@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] text-[#00ff41] font-mono overflow-x-hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  
+  html {
+    @apply bg-[#0a0a0a];
+  }
+}
+
+/* CRT Scanline Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.terminal-glow {
+  box-shadow: inset 0 0 100px rgba(0, 255, 65, 0.1), 0 0 20px rgba(0, 255, 65, 0.05);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::selection {
+  background: #00ff41;
+  color: black;
+}

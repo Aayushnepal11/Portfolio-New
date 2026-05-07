@@ -21,11 +21,11 @@ const SECTIONS = {
 
 export default function BrowserUI({ onBackToTerminal }) {
   const [activeTab, setActiveTab] = useState(SECTIONS.SUMMARY);
-  const [url, setUrl] = useState(`http://localhost:3000/${SECTIONS.SUMMARY}`);
+  const [url, setUrl] = useState(`${window.location.origin}/${SECTIONS.SUMMARY}`);
 
   const navigate = (id) => {
     setActiveTab(id);
-    setUrl(`http://localhost:3000/${id}`);
+    setUrl(`${window.location.origin}/${id}`);
   };
 
   return (

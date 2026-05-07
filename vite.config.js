@@ -13,7 +13,7 @@ export default defineConfig(({mode}) => {
   return {
     // Because you are using a custom domain (aayushnepal.com.np),
     // the base MUST be '/' for both development and production.
-    base: '/',
+    base: '/index.html',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

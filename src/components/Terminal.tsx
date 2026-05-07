@@ -107,6 +107,15 @@ export default function Terminal({ onLaunchGUI }) {
     }
   };
 
+  const [time, setTime] = useState(new Date().toLocaleTimeString('en-GB', { hour12: false }));
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString('en-GB', { hour12: false }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -199,8 +208,10 @@ export default function Terminal({ onLaunchGUI }) {
             <span className="flex items-center gap-2"><Cpu className="w-3 h-3" /> CORES: 16 (ACTIVE)</span>
           </div>
           <div className="flex gap-6">
-            <span className="flex items-center gap-2"><Globe className="w-3 h-3" /> SYNC: GLOBAL</span>
-            <span className="text-emerald-500/60 transition-colors">VER: 0x2A1F</span>
+            <span className="flex items-center gap-2 font-mono"><Globe className="w-3 h-3" /> SYNC: GLOBAL</span>
+            <span className="text-emerald-500 font-mono flex items-center gap-2">
+              <span className="opacity-30">TIME:</span> {time}
+            </span>
           </div>
         </div>
       </div>

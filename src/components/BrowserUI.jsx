@@ -301,17 +301,19 @@ function ProjectsTab() {
 function CertsTab() {
   const certs = [
     "ISC2 - Certified In Cyber Security (CC)",
-    "Google Cybersecurity Certificate (Coursera)",
-    "Google AI Professional Certificate",
-    "TryHackMe - SEC1 (Cyber Security 101)",
-    "TryHackMe - SEC0 (Pre Security)",
+    "Google Cybersecurity Professional Certificate",
+    "Google AI Essentials (Professional Certificate)",
     "Microsoft Azure (AZ-900) Azure Fundamentals",
-    "GitHub Foundation (Microsoft)",
+    "GitHub Foundation Certificate",
     "API Pentesting (APISec University)",
     "Practical Ethical Hacking (TCM Security)",
-    "Network Security (Coursera)",
+    "CompTIA Network+ (Udemy)",
+    "Network Security Specialist (Coursera)",
+    "Wireshark packet analysis mastery",
     "ICCA (Cloud Associate - INE)",
-    "AI for Everybody (DeepLearning AI)"
+    "AI for Everybody (DeepLearning.AI)",
+    "TryHackMe - SEC1 (Cyber Security 101)",
+    "TryHackMe - SEC0 (Pre Security)"
   ];
 
   return (

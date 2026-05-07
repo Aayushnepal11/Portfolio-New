@@ -49,12 +49,60 @@ export default function Terminal({ onLaunchGUI }) {
       "SECURE CHANNELS:",
       "Email: nepalaayush88@gmail.com",
       "Phone: +977.9861001374",
-      "LinkedIn: aayush-nepal-427957302"
+      "LinkedIn: aayush-nepal"
     ],
     cat: (args) => {
       const file = args[0]?.toLowerCase();
       if (!file) return ["Error: Argument missing."];
-      if (file === 'experience') return ["[+] Decrypting... [OK]", "- Computer Network Instructor (2025)", "- Full-Stack Freelance (2023)", "- PHP Developer (2022)"];
+      
+      const dossiers = {
+        experience: [
+          "[+] Decrypting Experience Dossier...",
+          "- Computer Network Instructor (2025)",
+          "- Freelance Full-Stack Developer (2023)",
+          "- PHP Developer (2022)"
+        ],
+        projects: [
+          "[+] Decrypting Project Artifacts...",
+          "- Network Monitor App (Python/Django/Nmap)",
+          "- E-Commerce Security (Django/MySQL/Authz)",
+          "- Secure Email Meta-Analysis (Gmail API)"
+        ],
+        certifications: [
+          "[+] Decrypting Credentials...",
+          "- ISC2 - Certified In Cyber Security (CC)",
+          "- Google Cybersecurity Professional Certificate",
+          "- Google AI Essentials (Professional Certificate)",
+          "- Microsoft Azure (AZ-900) Fundamentals",
+          "- GitHub Foundation Certificate",
+          "- Practical Ethical Hacking (TCM Security)"
+        ],
+        certs: [
+          "[+] Decrypting Credentials...",
+          "- ISC2 - Certified In Cyber Security (CC)",
+          "- Google Cybersecurity Professional Certificate",
+          "- Google AI Essentials (Professional Certificate)",
+          "- Microsoft Azure (AZ-900) Fundamentals",
+          "- GitHub Foundation Certificate",
+          "- Practical Ethical Hacking (TCM Security)"
+        ],
+        skills: [
+          "[+] Decrypting Capability Matrix...",
+          "- Vulnerability Analysis: Nessus, CVE Analysis",
+          "- Pentesting: Metasploit, Soloris, RedHawk",
+          "- Network: Cisco GNS3, VLAN, Subnetting",
+          "- OSINT: Google Dorking, Reconnaissance",
+          "- Languages: Python (Security Automation), PHP"
+        ],
+        education: [
+          "[+] Decrypting Academic Records...",
+          "- Bachelor's Degree (BCA) - Divya Gyan College",
+          "- NEB Class 12th - Kathmandu Bernhardt College",
+          "- SEE Class 10th - Laboratory Higher Secondary School"
+        ]
+      };
+
+      if (dossiers[file]) return ["[OK] Access Granted.", ...dossiers[file]];
       return [`Error: Access denied. Dossier '${file}' not found.`];
     }
   };

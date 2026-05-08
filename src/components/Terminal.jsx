@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { TerminalSquare, ShieldCheck, HardDrive, Cpu, Globe, ChevronRight } from 'lucide-react';
+import { Terminal as TerminalIcon, TerminalSquare, ShieldCheck, HardDrive, Cpu, Globe, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const USER = "aayush";
-const HOST = "crypt-node";
-const PROMPT = `${USER}@${HOST}:~$ `;
+const HOST = "10.10.10.20";
+const PROMPT = "aayush@10.10.10.20 ~ > ";
 
 export default function Terminal({ onLaunchGUI }) {
   const [history, setHistory] = useState([
-    { type: 'output', content: "SYSTEM BOOTSTRAP COMPLETE. BIOS VER 4.2.1-AN" },
-    { type: 'output', content: "Aayush Nepal's secure dossier decrypted and ready." },
+    { type: 'output', content: "SYSTEM 0x42: BOOTSTRAP COMPLETE" },
+    { type: 'input', content: "ssh aayush@10.10.10.20 -i key.pem" },
+    { type: 'output', content: "Authenticated with public key \"key.pem\"." },
+    { type: 'output', content: "Last login: Fri May 08 00:45:12 2026 from 192.168.1.105" },
+    { type: 'output', content: "Welcome to fish, the friendly interactive shell" },
     { type: 'output', content: "Type 'help' for system directives or 'gui' for visual interface." }
   ]);
   const [input, setInput] = useState("");
@@ -18,75 +22,68 @@ export default function Terminal({ onLaunchGUI }) {
 
   const COMMANDS = {
     help: () => [
-      "SYSTEM ACCESS GRANTED. AVAILABLE COMMANDS:",
-      "  whoami       - Subject identity & professional summary",
-      "  ls           - List available dossiers (experience, etc)",
-      "  cat <file>   - Decrypt and read dossier contents",
-      "  gui          - LAUNCH PROFESSIONAL VISUAL INTERFACE (Virtual Browser)",
-      "  clear        - Flush terminal buffer",
-      "  neofetch     - Subject environment summary",
-      "  contact      - Secure comms channels"
+      "FISH SHELL HELP SYSTEM:",
+      "  GENERAL:",
+      "    whoami       - Subject identity & professional summary",
+      "    ls           - List available dossiers (experience, etc)",
+      "    cat <file>   - Decrypt and read dossier contents",
+      "    gui          - LAUNCH PROFESSIONAL VISUAL INTERFACE",
+      "    clear        - Flush terminal buffer",
+      "    neofetch     - Subject environment summary",
+      "    contact      - Secure comms channels"
     ],
     whoami: () => [
       "IDENTITY: Aayush Nepal",
       "PROFESSION: Cybersecurity Researcher & Python Developer",
       "MISSION: Contributing expertise to high-impact security solutions."
     ],
-    ls: () => ["experience", "projects", "certifications", "skills", "education"],
+    ls: () => ["experience.log", "projects.db", "certifications.txt", "skills.yml", "education.edu"],
     gui: () => {
       onLaunchGUI();
       return ["[!] Initializing GUI..."];
     },
     neofetch: () => [
       "          _              OS: AayushOS v2.0",
-      "      _--' '--_          User: Aayush Nepal",
-      "     |_________|         Location: Kathmandu, Nepal",
-      "      |  _ _  |          Shell: React / Vite",
+      "      _--' '--_          User: aayush",
+      "     |_________|         Host: 10.10.10.20",
+      "      |  _ _  |          Kernel: 6.5.0-security-an",
       "      | | | | |          Uptime: 100% Passion",
-      "      |_|_|_|_|          Focus: Offensive Sec / Cloud"
+      "      |_|_|_|_|          Shell: Fish-Shell / React"
     ],
     contact: () => [
       "SECURE CHANNELS:",
       "Email: nepalaayush88@gmail.com",
       "Phone: +977.9861001374",
-      "LinkedIn: aayush-nepal"
+      "LinkedIn: aayush-nepal-427957302",
+      "X (Twitter): @AAYUSHN97018184"
     ],
     cat: (args) => {
-      const file = args[0]?.toLowerCase();
-      if (!file) return ["Error: Argument missing."];
+      const fileName = args[0]?.toLowerCase();
+      if (!fileName) return ["Error: Argument missing."];
       
       const dossiers = {
-        experience: [
+        "experience.log": [
           "[+] Decrypting Experience Dossier...",
           "- Computer Network Instructor (2025)",
           "- Freelance Full-Stack Developer (2023)",
           "- PHP Developer (2022)"
         ],
-        projects: [
+        "projects.db": [
           "[+] Decrypting Project Artifacts...",
           "- Network Monitor App (Python/Django/Nmap)",
           "- E-Commerce Security (Django/MySQL/Authz)",
           "- Secure Email Meta-Analysis (Gmail API)"
         ],
-        certifications: [
+        "certifications.txt": [
           "[+] Decrypting Credentials...",
+          "- CompTIA Security+",
           "- ISC2 - Certified In Cyber Security (CC)",
           "- Google Cybersecurity Professional Certificate",
           "- Google AI Essentials (Professional Certificate)",
-          "- Microsoft Azure (AZ-900) Fundamentals",
           "- GitHub Foundation Certificate",
-          "- Practical Ethical Hacking (TCM Security)"
+          "- API Pentesting (APISec University)"
         ],
-        certs: [
-          "[+] Decrypting Credentials...",
-          "- ISC2 - Certified In Cyber Security (CC)",
-          "- Google Cybersecurity Professional Certificate",
-          "- Google AI Essentials (Professional Certificate)",
-          "- Microsoft Azure (AZ-900) Fundamentals",
-          "- GitHub Foundation Certificate",
-          "- Practical Ethical Hacking (TCM Security)"
-        ],
-        skills: [
+        "skills.yml": [
           "[+] Decrypting Capability Matrix...",
           "- Vulnerability Analysis: Nessus, CVE Analysis",
           "- Pentesting: Metasploit, Soloris, RedHawk",
@@ -94,7 +91,7 @@ export default function Terminal({ onLaunchGUI }) {
           "- OSINT: Google Dorking, Reconnaissance",
           "- Languages: Python (Security Automation), PHP"
         ],
-        education: [
+        "education.edu": [
           "[+] Decrypting Academic Records...",
           "- Bachelor's Degree (BCA) - Divya Gyan College",
           "- NEB Class 12th - Kathmandu Bernhardt College",
@@ -102,17 +99,38 @@ export default function Terminal({ onLaunchGUI }) {
         ]
       };
 
-      if (dossiers[file]) return ["[OK] Access Granted.", ...dossiers[file]];
-      return [`Error: Access denied. Dossier '${file}' not found.`];
+      if (dossiers[fileName]) {
+        return ["[OK] Access Granted.", ...dossiers[fileName]];
+      }
+      
+      // Check if they forgot the extension but the base name matches
+      const baseName = fileName.split('.')[0];
+      const validFiles = Object.keys(dossiers);
+      const isBaseMatch = validFiles.some(f => f.startsWith(baseName));
+      
+      if (isBaseMatch) {
+        return [`cat: ${fileName}: No such file or directory (Did you forget the extension?)`];
+      }
+      
+      return [`cat: ${fileName}: No such file or directory`];
     }
   };
 
-  const [time, setTime] = useState(new Date().toLocaleTimeString('en-GB', { hour12: false }));
+  const [formattedDateTime, setFormattedDateTime] = useState("");
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString('en-GB', { hour12: false }));
-    }, 1000);
+    const updateDateTime = () => {
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2, '0');
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yy = String(now.getFullYear()).slice(-2);
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      setFormattedDateTime(`${dd}/${mm}/${yy} ${hh}:${mins}:${ss}`);
+    };
+    updateDateTime();
+    const timer = setInterval(updateDateTime, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -141,7 +159,7 @@ export default function Terminal({ onLaunchGUI }) {
       const output = COMMANDS[lowerCmd](args);
       output.forEach(line => newHistory.push({ type: 'output', content: line }));
     } else {
-      newHistory.push({ type: 'output', content: `sh: command not found: ${cmd}` });
+      newHistory.push({ type: 'output', content: `fish: Unknown command '${cmd}'` });
     }
 
     setHistory(newHistory);
@@ -155,64 +173,75 @@ export default function Terminal({ onLaunchGUI }) {
     >
       <div className="scanlines" />
       
-      <div className="w-full max-w-5xl h-[85vh] flex flex-col border border-emerald-500/10 bg-[#080808]/90 rounded-lg shadow-[0_0_50px_rgba(16,185,129,0.05)] terminal-glow relative z-10">
+      <div className="w-full max-w-5xl h-[85vh] flex flex-col border border-cyan-500/20 bg-[#080808]/98 rounded-lg shadow-[0_0_60px_rgba(34,211,238,0.1)] terminal-glow relative z-10">
         
         <div className="bg-[#111] p-3 flex items-center justify-between border-b border-white/5 rounded-t-lg">
-          <div className="flex gap-2 ml-2">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56]/60" />
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/60" />
-            <div className="w-3 h-3 rounded-full bg-[#27c93f]/60" />
+          <div className="flex gap-2 ml-2 pr-4">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
           </div>
-          <div className="text-[10px] text-emerald-500/40 uppercase tracking-widest font-bold">
-            <TerminalSquare className="w-3.5 h-3.5 inline mr-2" /> SSH@AAYUSH_CORE
+          <div className="flex-1 text-center">
+            <div className="text-[11px] text-cyan-400 uppercase tracking-widest font-bold inline-flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5" /> 
+              aayush@10.10.10.20: SSH_SESSION
+            </div>
           </div>
-          <div className="w-16" />
+          <div className="hidden sm:block text-[11px] text-cyan-400 font-mono font-bold pr-2">
+            {formattedDateTime}
+          </div>
         </div>
 
-        <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-2 scrollbar-hide">
+        <div className="block md:hidden absolute inset-0 z-50 bg-[#080808]/95 backdrop-blur-md flex flex-col items-center justify-center p-8 text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
+            <TerminalIcon className="w-8 h-8 text-cyan-400" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold text-white tracking-tight">Console Restricted</h2>
+            <p className="text-xs text-zinc-500 leading-relaxed max-w-[240px]">
+              The secure terminal interface is exclusive to desktop and tablet environments. 
+              Please launch the GUI for full mobile access.
+            </p>
+          </div>
+          <Button 
+            onClick={onLaunchGUI}
+            className="bg-cyan-500 text-black hover:bg-cyan-400 font-bold px-8 h-12 rounded-xl text-xs tracking-widest"
+          >
+            LAUNCH VISUAL GUI
+          </Button>
+        </div>
+
+        <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-1.5 scrollbar-hide">
           <AnimatePresence>
             {history.map((line, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
-                className={`${line.type === 'input' ? 'text-emerald-500' : 'text-emerald-500/70'} whitespace-pre-wrap flex gap-3`}
+                className={`${line.type === 'input' ? 'text-cyan-300' : 'text-cyan-400/90'} whitespace-pre-wrap flex gap-3`}
               >
                 {line.type === 'input' ? (
-                  <span className="opacity-40">{PROMPT}</span>
+                  <span className="text-cyan-500 font-bold">{PROMPT}</span>
                 ) : (
-                  <div className="opacity-20 mt-1.5 shrink-0"><ChevronRight className="w-3 h-3" /></div>
+                  <div className="text-cyan-500/40 mt-1.5 shrink-0"><ChevronRight className="w-3 h-3" /></div>
                 )}
-                <span>{line.content}</span>
+                <span className={line.type === 'input' ? 'font-bold' : ''}>{line.content}</span>
               </motion.div>
             ))}
           </AnimatePresence>
           
           <form onSubmit={handleCommand} className="flex items-center gap-3">
-            <span className="opacity-40 group-hover:opacity-100 transition-opacity whitespace-nowrap">{PROMPT}</span>
+            <span className="text-cyan-500 font-bold whitespace-nowrap">{PROMPT}</span>
             <input
               ref={inputRef} type="text" value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-1 bg-transparent border-none outline-none text-emerald-500 caret-transparent"
+              className="flex-1 bg-transparent border-none outline-none text-cyan-300 caret-transparent font-bold"
               autoFocus spellCheck="false" autoComplete="off"
             />
             <motion.div 
               animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }}
-              className="w-2.5 h-5 bg-emerald-500 shadow-[0_0_8px_#10b981]"
+              className="w-2.5 h-5 bg-cyan-400 shadow-[0_0_10px_#22d3ee]"
             />
           </form>
-        </div>
-
-        <div className="bg-[#0a0a0a] border-t border-white/5 p-2.5 px-8 flex justify-between items-center text-[9px] uppercase font-bold text-emerald-500/30">
-          <div className="flex gap-6">
-            <span className="flex items-center gap-2"><HardDrive className="w-3 h-3" /> DRIVE: SECURE_NVME</span>
-            <span className="flex items-center gap-2"><Cpu className="w-3 h-3" /> CORES: 16 (ACTIVE)</span>
-          </div>
-          <div className="flex gap-6">
-            <span className="flex items-center gap-2 font-mono"><Globe className="w-3 h-3" /> SYNC: GLOBAL</span>
-            <span className="text-emerald-500 font-mono flex items-center gap-2">
-              <span className="opacity-30">TIME:</span> {time}
-            </span>
-          </div>
         </div>
       </div>
     </div>

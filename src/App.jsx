@@ -22,7 +22,7 @@ export default function App() {
   }, [view]);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-[#00ff41] font-mono selection:bg-[#00ff41] selection:text-black">
+    <main className="min-h-screen bg-[#050505] text-[#1793d1] font-mono selection:bg-[#1793d1] selection:text-white">
       <AnimatePresence mode="wait">
         {view === 'terminal' && !isMobile ? (
           <motion.div

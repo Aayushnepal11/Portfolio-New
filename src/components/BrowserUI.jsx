@@ -40,15 +40,9 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
   };
 
   return (
-    <div className="w-full h-screen bg-[#050505] flex flex-col font-sans text-zinc-400 selection:bg-emerald-500/30 overflow-hidden">
+    <div className="w-full h-screen bg-[#050505] flex flex-col font-sans text-zinc-400 selection:bg-[#1793d1]/30 overflow-hidden">
       {/* Browser Bar - Refined & Responsive */}
       <div className="bg-[#0a0a0a] px-4 md:px-6 py-3 flex items-center gap-4 md:gap-6 border-b border-white/[0.03] z-50">
-        <div className="flex gap-2.5 shrink-0 hidden sm:flex">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56] shadow-lg shadow-red-500/20" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-lg shadow-yellow-500/20" />
-          <div className="w-3 h-3 rounded-full bg-[#27c93f] shadow-lg shadow-green-500/20" />
-        </div>
-
         <Button 
           variant="ghost" 
           size="icon" 
@@ -58,26 +52,13 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
           {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
         
-        <div className="hidden md:flex items-center gap-1.5 grayscale opacity-60 hover:opacity-100 transition-all">
-          <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full hover:bg-white/5 text-zinc-500">
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-          <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full hover:bg-white/5 text-zinc-500">
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-          <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full hover:bg-white/5 text-zinc-500">
-            <RotateCw className="w-4 h-4" />
-          </Button>
-        </div>
-
-        <div className="flex-1 bg-white/[0.02] border border-white/[0.05] rounded-full h-10 px-3 md:px-5 flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-mono tracking-tight text-zinc-500 group hover:border-emerald-500/20 transition-all truncate">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-500/60 transition-colors group-hover:text-emerald-400 shrink-0" />
+        <div className="flex-1 bg-white/[0.02] border border-white/[0.05] rounded-full h-10 px-3 md:px-5 flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-mono tracking-tight text-zinc-500 group hover:border-[#1793d1]/20 transition-all truncate">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#1793d1]/60 transition-colors group-hover:text-[#1793d1] shrink-0" />
           <div className="flex items-center gap-1 truncate">
             <span className="opacity-40 select-none hidden xs:inline">https://</span>
             <span className="text-zinc-400 font-medium truncate">{url.replace('https://', '').replace('http://', '')}</span>
           </div>
           <div className="flex-1" />
-          <div className="hidden sm:block px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500/80 text-[9px] font-bold border border-emerald-500/20">ENCRYPTED</div>
         </div>
 
         {!hideTerminalButton && (
@@ -85,9 +66,15 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
             variant="ghost" 
             size="sm" 
             onClick={onBackToTerminal}
-            className="text-zinc-500 hover:text-emerald-400 hover:bg-emerald-500/10 font-mono text-[10px] tracking-widest px-3 md:px-4 h-10 rounded-full border border-transparent hover:border-emerald-500/20 transition-all uppercase shrink-0"
+            className="text-zinc-500 hover:text-[#1793d1] hover:bg-[#1793d1]/10 font-mono text-[10px] tracking-widest px-3 md:px-4 h-10 rounded-full border border-transparent hover:border-[#1793d1]/20 transition-all uppercase shrink-0 gap-2"
           >
-            <TerminalIcon className="w-3.5 h-3.5 md:mr-2" /> <span className="hidden md:inline">EXIT_GUI</span>
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" 
+              alt="Linux" 
+              className="w-4 h-4 object-contain brightness-90 group-hover:brightness-100"
+              referrerPolicy="no-referrer"
+            />
+            <span className="hidden md:inline">TERMINAL</span>
           </Button>
         )}
       </div>
@@ -101,7 +88,7 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
               animate={{ scale: 1, opacity: 1 }}
               className="relative mb-6"
             >
-              <div className="w-24 h-24 rounded-[32px] bg-gradient-to-tr from-emerald-600/20 via-emerald-500/40 to-cyan-500/20 p-[1px] shadow-2xl shadow-emerald-500/10">
+              <div className="w-24 h-24 rounded-[32px] bg-gradient-to-tr from-[#1793d1]/20 via-[#1793d1]/40 to-blue-500/20 p-[1px] shadow-2xl shadow-[#1793d1]/10">
                 <div className="w-full h-full bg-[#050505] rounded-[32px] overflow-hidden">
                   <img 
                     src="https://github.com/Aayushnepal11.png" 
@@ -111,12 +98,12 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-4 border-[#080808] shadow-lg shadow-emerald-500/50" />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#1793d1] border-4 border-[#080808] shadow-lg shadow-[#1793d1]/50" />
             </motion.div>
             <h1 className="text-white font-display text-xl font-bold tracking-tight">Aayush Nepal</h1>
             <div className="flex items-center gap-2 mt-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-[0.25em]">Security Specialist</p>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1793d1] animate-pulse" />
+              <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-[0.25em]">Cybersecurity & AI</p>
             </div>
           </div>
 
@@ -243,12 +230,12 @@ function SidebarButton({ active, onClick, icon, label }) {
           transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
         />
       )}
-      <div className={`relative z-10 p-1.5 rounded-lg transition-colors ${active ? 'text-emerald-400 bg-emerald-500/10' : 'text-zinc-600 group-hover:text-zinc-400'}`}>
+      <div className={`relative z-10 p-1.5 rounded-lg transition-colors ${active ? 'text-[#1793d1] bg-[#1793d1]/10' : 'text-zinc-600 group-hover:text-zinc-400'}`}>
         {React.cloneElement(icon, { size: 16 })}
       </div>
       <span className="relative z-10">{label}</span>
       {active && (
-        <div className="absolute right-4 w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] relative z-10" />
+        <div className="absolute right-4 w-1 h-1 rounded-full bg-[#1793d1] shadow-[0_0_8px_#1793d1] relative z-10" />
       )}
     </button>
   );
@@ -256,8 +243,8 @@ function SidebarButton({ active, onClick, icon, label }) {
 
 function SocialLink({ href, icon, label }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-600 hover:text-emerald-400 transition-all cursor-pointer group">
-      <div className="w-8 h-8 rounded-lg bg-zinc-900/50 flex items-center justify-center border border-white/[0.05] group-hover:border-emerald-500/20 group-hover:bg-emerald-500/5">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-600 hover:text-[#1793d1] transition-all cursor-pointer group">
+      <div className="w-8 h-8 rounded-lg bg-zinc-900/50 flex items-center justify-center border border-white/[0.05] group-hover:border-[#1793d1]/20 group-hover:bg-[#1793d1]/5">
         {icon}
       </div>
       <span className="text-[11px] font-medium tracking-tight">{label}</span>

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Badge } from '@/components/ui/badge';
 import { Award, ExternalLink } from 'lucide-react';
 
 /**
@@ -16,7 +15,7 @@ function CredlyEmbed({ badgeId }) {
   }, []);
 
   return (
-    <div className="relative flex justify-center p-4 bg-white/[0.02] rounded-3xl border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/5 group overflow-hidden min-h-[302px]">
+    <div className="relative flex justify-center p-4 bg-white/[0.02] rounded-3xl border border-white/[0.05] hover:border-[#1793d1]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[#1793d1]/5 group overflow-hidden min-h-[302px]">
       {!loaded && (
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 space-y-4">
           <div className="w-24 h-24 rounded-full bg-white/[0.03] animate-pulse" />
@@ -42,7 +41,7 @@ function MicrosoftEmbed({ url }) {
   const [isLoading, setIsLoading] = React.useState(true);
 
   return (
-    <div className="relative w-full aspect-[3/4] bg-white/[0.02] rounded-3xl border border-white/[0.05] overflow-hidden hover:border-emerald-500/30 transition-all duration-500 group">
+    <div className="relative w-full aspect-[3/4] bg-white/[0.02] rounded-3xl border border-white/[0.05] overflow-hidden hover:border-[#1793d1]/30 transition-all duration-500 group">
       {isLoading && (
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 space-y-6">
           <Award className="w-12 h-12 text-zinc-800 animate-pulse" />
@@ -130,7 +129,7 @@ export default function CertsTab() {
       name: "Cloud Associate (ICCA)",
       issuer: "INE",
       image: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/167860214",
-      url: "https://certified.ine.com/certificate/167860214",
+      url: "https://certs.ine.com/6d853a0f-dd29-4f6c-a367-0e2c33cc497a#acc.bOMp3gC9",
     }
   ];
 
@@ -147,8 +146,7 @@ export default function CertsTab() {
   return (
     <div className="space-y-16 pb-20 select-none">
       <div className="space-y-4">
-        <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase rounded-full">Validated Status</Badge>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tighter">Professional <span className="text-zinc-500">Credentials.</span></h2>
+        <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tighter">Professional <span className="bg-gradient-to-r from-[#1793d1]/50 to-[#1793d1]/10 bg-clip-text text-transparent">Validators.</span></h2>
         <p className="text-zinc-500 text-base md:text-lg font-light max-w-xl">Curated collection of industry-recognized certifications and interactive security badges.</p>
       </div>
 
@@ -164,7 +162,7 @@ export default function CertsTab() {
               <div className="space-y-5">
                 <CredlyEmbed badgeId={c.badgeId} />
                 <div className="px-4">
-                  <div className="text-[10px] text-emerald-500/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
+                  <div className="text-[10px] text-[#1793d1]/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
                   <div className="text-sm font-bold text-white tracking-tight leading-snug">{c.name}</div>
                 </div>
               </div>
@@ -172,7 +170,7 @@ export default function CertsTab() {
               <div className="space-y-5">
                 <MicrosoftEmbed url={c.url} />
                 <div className="px-4">
-                  <div className="text-[10px] text-emerald-500/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
+                  <div className="text-[10px] text-[#1793d1]/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
                   <div className="text-sm font-bold text-white tracking-tight">{c.name}</div>
                 </div>
               </div>
@@ -181,7 +179,7 @@ export default function CertsTab() {
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col p-6 rounded-[32px] bg-white/[0.02] border border-white/[0.05] hover:border-emerald-500/30 hover:bg-white/[0.04] transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/5 h-full"
+                className="group relative flex flex-col p-6 rounded-[32px] bg-white/[0.02] border border-white/[0.05] hover:border-[#1793d1]/30 hover:bg-white/[0.04] transition-all duration-500 hover:shadow-2xl hover:shadow-[#1793d1]/5 h-full"
               >
                 <div className="relative w-full aspect-square mb-6 flex items-center justify-center p-8 bg-black/20 rounded-2xl">
                   <img 
@@ -190,11 +188,11 @@ export default function CertsTab() {
                     className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity rounded-full" />
+                  <div className="absolute inset-0 bg-[#1793d1]/10 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity rounded-full" />
                 </div>
                 <div className="mt-auto">
-                  <div className="text-[10px] text-emerald-500/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
-                  <div className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors tracking-tight leading-tight mb-2">{c.name}</div>
+                  <div className="text-[10px] text-[#1793d1]/60 font-mono uppercase tracking-widest mb-1">{c.issuer}</div>
+                  <div className="text-sm font-bold text-white group-hover:text-[#1793d1] transition-colors tracking-tight leading-tight mb-2">{c.name}</div>
                   <div className="flex items-center gap-2 text-[10px] text-zinc-600 font-bold tracking-widest mt-4">
                     VERIFY AUTHENTICITY <ExternalLink className="w-3 h-3 translate-y-[-1px]" />
                   </div>
@@ -221,8 +219,8 @@ export default function CertsTab() {
               viewport={{ once: true }}
               className="flex items-center gap-6 p-6 rounded-2xl bg-white/[0.01] border border-white/[0.03] transition-all hover:bg-white/[0.03] group overflow-hidden"
             >
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/5 flex items-center justify-center border border-white/[0.05] group-hover:border-emerald-500/20 group-hover:bg-emerald-500/10 transition-all shrink-0">
-                <Award className="w-5 h-5 text-emerald-500/40 group-hover:text-emerald-400 transition-colors" />
+              <div className="w-10 h-10 rounded-xl bg-[#1793d1]/5 flex items-center justify-center border border-white/[0.05] group-hover:border-[#1793d1]/20 group-hover:bg-[#1793d1]/10 transition-all shrink-0">
+                <Award className="w-5 h-5 text-[#1793d1]/40 group-hover:text-[#1793d1] transition-colors" />
               </div>
               <div className="flex justify-between items-center w-full min-w-0">
                 <span className="text-[13px] font-medium text-zinc-400 group-hover:text-zinc-200 transition-colors truncate pr-4">{c.name}</span>
@@ -231,7 +229,7 @@ export default function CertsTab() {
                     href={c.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-[10px] font-bold text-emerald-500/60 hover:text-emerald-400 uppercase tracking-widest border border-emerald-500/20 px-3 py-1.5 rounded-lg hover:bg-emerald-500/10 transition-all shrink-0"
+                    className="text-[10px] font-bold text-[#1793d1]/60 hover:text-[#1793d1] uppercase tracking-widest border border-[#1793d1]/20 px-3 py-1.5 rounded-lg hover:bg-[#1793d1]/10 transition-all shrink-0"
                   >
                     Verify
                   </a>

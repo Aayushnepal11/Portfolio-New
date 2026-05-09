@@ -164,37 +164,43 @@ export default function Terminal({ onLaunchGUI }) {
 
   return (
     <div 
-      className="min-h-screen bg-[#050505] p-2 md:p-8 font-mono relative overflow-hidden flex items-center justify-center cursor-text"
+      className="min-h-screen bg-[#050505] font-mono relative overflow-hidden flex items-center justify-center cursor-text"
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Background Layer */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none grayscale brightness-50 contrast-125"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2000')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          mixBlendMode: 'luminosity'
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-[#1793d1]/10 pointer-events-none" />
-      <div className="scanlines" />
+      {/* Background Layer - Enhanced Hacker Theme */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `radial-gradient(#1793d1 1px, transparent 1px)`,
+            backgroundSize: '32px 32px'
+          }}
+        />
+        <div 
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(#1793d1 1px, transparent 1px), linear-gradient(90deg, #1793d1 1px, transparent 1px)`,
+            backgroundSize: '128px 128px'
+          }}
+        />
+        <div 
+          className="absolute inset-0 opacity-10 grayscale brightness-50"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2000')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            mixBlendMode: 'screen'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-transparent to-[#1793d1]/5 pointer-events-none" />
+      <div className="scanlines opacity-50" />
       
-      <div className="w-full max-w-5xl h-[85vh] flex flex-col border border-[#1793d1]/30 bg-[#080808]/90 backdrop-blur-sm rounded-lg shadow-[0_0_100px_rgba(23,147,209,0.15)] terminal-glow relative z-10 overflow-hidden">
+      <div className="w-full h-screen flex flex-col bg-[#050505]/60 backdrop-blur-[2px] relative z-10 overflow-hidden">
         
-        <div className="bg-[#111] p-3 flex items-center justify-between border-b border-[#1793d1]/20 rounded-t-lg">
-          <div className="flex gap-2 ml-2 pr-4">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-            <div className="w-3 h-3 rounded-full bg-[#1793d1]" />
-          </div>
-          <div className="flex-1 text-center font-mono">
-            <div className="text-[11px] text-[#1793d1] uppercase tracking-widest font-bold inline-flex items-center gap-2">
-              <ShieldCheck className="w-3.5 h-3.5" /> 
-              {USER}@{HOST}
-            </div>
-          </div>
-          <div className="hidden sm:block text-[11px] text-[#1793d1]/80 font-mono font-bold pr-2">
+        <div className="bg-[#111]/80 backdrop-blur-md p-4 flex items-center justify-end">
+          <div className="text-[12px] text-[#1793d1] font-mono font-bold pr-4">
             {formattedDateTime}
           </div>
         </div>
@@ -217,25 +223,25 @@ export default function Terminal({ onLaunchGUI }) {
           </Button>
         </div>
 
-        <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 space-y-2 scrollbar-hide">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-12 space-y-3 scrollbar-hide text-lg md:text-xl">
           <AnimatePresence>
             {history.map((line, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
-                className={`${line.type === 'input' ? 'text-white' : 'text-[#1793d1]/90'} whitespace-pre-wrap flex gap-3`}
+                className={`${line.type === 'input' ? 'text-white' : 'text-[#1793d1]/90'} whitespace-pre-wrap flex gap-4`}
               >
                 {line.type === 'input' ? (
                   <span className="text-[#1793d1] font-bold">{PROMPT}</span>
                 ) : (
-                  <div className="text-[#1793d1]/30 mt-1.5 shrink-0"><ChevronRight className="w-3 h-3" /></div>
+                  <div className="text-[#1793d1]/30 mt-2 shrink-0"><ChevronRight className="w-4 h-4" /></div>
                 )}
                 <span className={line.type === 'input' ? 'font-bold' : ''}>{line.content}</span>
               </motion.div>
             ))}
           </AnimatePresence>
           
-          <form onSubmit={handleCommand} className="flex items-center gap-3">
+          <form onSubmit={handleCommand} className="flex items-center gap-4">
             <span className="text-[#1793d1] font-bold whitespace-nowrap">{PROMPT}</span>
             <input
               ref={inputRef} type="text" value={input}
@@ -245,7 +251,7 @@ export default function Terminal({ onLaunchGUI }) {
             />
             <motion.div 
               animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }}
-              className="w-2.5 h-5 bg-[#1793d1] shadow-[0_0_10px_#1793d1]"
+              className="w-3 h-7 bg-[#1793d1] shadow-[0_0_15px_#1793d1]"
             />
           </form>
         </div>

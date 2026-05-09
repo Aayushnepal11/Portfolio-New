@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal as TerminalIcon, TerminalSquare, ShieldCheck, HardDrive, Cpu, Globe, ChevronRight } from 'lucide-react';
+import { Terminal as TerminalIcon, TerminalSquare, ShieldCheck, HardDrive, Cpu, Globe, ChevronRight, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const USER = "aayush";
 const HOST = "10.10.10.20";
 const PROMPT = `${USER}@${HOST} ~ > `;
 
-export default function Terminal({ onLaunchGUI }) {
+export default function Terminal({ onLaunchGUI, onExit }) {
   const [history, setHistory] = useState([
     { type: 'output', content: " " },
     { type: 'output', content: "            .---." },
@@ -35,13 +35,18 @@ export default function Terminal({ onLaunchGUI }) {
       "  cat <file>   - Read folder content",
       "  gui          - Open the visual website",
       "  clear        - Clear the screen",
-      "  contact      - How to reach me"
+      "  contact      - How to reach me",
+      "  exit         - Return to desktop"
     ],
     whoami: () => [
       "NAME: Aayush Nepal",
       "ROLE: Cybersecurity Specialist / AI",
       "GOAL: Improving security through research and technology."
     ],
+    exit: () => {
+      onExit();
+      return ["Terminating session..."];
+    },
     ls: () => ["experience.log", "projects.db", "certifications.txt", "skills.yml", "education.edu"],
     gui: () => {
       onLaunchGUI();
@@ -199,7 +204,16 @@ export default function Terminal({ onLaunchGUI }) {
       
       <div className="w-full h-screen flex flex-col bg-[#050505]/60 backdrop-blur-[2px] relative z-10 overflow-hidden">
         
-        <div className="bg-[#111]/80 backdrop-blur-md p-4 flex items-center justify-end">
+        <div className="bg-[#111]/80 backdrop-blur-md p-4 flex items-center justify-between">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={onExit}
+            className="text-[#1793d1]/60 hover:text-[#1793d1] hover:bg-[#1793d1]/10 gap-2 h-8 px-3 rounded-md transition-all"
+          >
+            <Home className="w-3.5 h-3.5" />
+            <span className="text-[10px] font-bold tracking-widest uppercase">Desktop</span>
+          </Button>
           <div className="text-[12px] text-[#1793d1] font-mono font-bold pr-4">
             {formattedDateTime}
           </div>

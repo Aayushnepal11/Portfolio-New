@@ -46,7 +46,6 @@ export default function App() {
             <Desktop 
               onOpenTerminal={requestTerminal} 
               onOpenGUI={() => setView('gui')} 
-              isMobile={isMobile}
             />
           </motion.div>
         ) : view === 'terminal' ? (
@@ -72,15 +71,10 @@ export default function App() {
             className="min-h-screen bg-[#0a0a0a]"
           >
             <BrowserUI 
-              onBackToTerminal={() => {
-                if (isMobile) {
-                  requestTerminal();
-                  // We stay in GUI but notice pops up
-                } else {
-                  setView('terminal');
-                }
-              }} 
+              onBackToTerminal={requestTerminal} 
+              onBackToDesktop={() => setView('desktop')}
               hideTerminalButton={false}
+              isMobile={isMobile}
             />
           </motion.div>
         )}

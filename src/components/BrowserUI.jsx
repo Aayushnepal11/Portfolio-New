@@ -4,7 +4,7 @@ import {
   ChevronLeft, ChevronRight, RotateCw, Home, Search, 
   Terminal as TerminalIcon, ShieldCheck, Mail, Github, 
   Linkedin, Twitter, ExternalLink, User, Briefcase, Code2, 
-  Award, GraduationCap, Laptop, Cpu, Menu, X
+  Award, GraduationCap, Laptop, Cpu, Menu, X, Monitor
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +27,7 @@ const SECTIONS = {
   EDUCATION: 'education'
 };
 
-export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
+export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTerminalButton, isMobile }) {
   const [activeTab, setActiveTab] = useState(SECTIONS.SUMMARY);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const baseLocation = window.location.origin + window.location.pathname;
@@ -43,14 +43,26 @@ export default function BrowserUI({ onBackToTerminal, hideTerminalButton }) {
     <div className="w-full h-screen bg-[#050505] flex flex-col font-sans text-zinc-400 selection:bg-[#1793d1]/30 overflow-hidden">
       {/* Browser Bar - Refined & Responsive */}
       <div className="bg-[#0a0a0a] px-4 md:px-6 py-3 flex items-center gap-4 md:gap-6 border-b border-white/[0.03] z-50">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="md:hidden text-zinc-400"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden text-zinc-400"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
+
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-zinc-400 hover:text-[#1793d1] hover:bg-[#1793d1]/10 transition-all rounded-lg"
+            onClick={onBackToDesktop}
+            title="Exit to Desktop"
+          >
+            <Monitor className="w-5 h-5" />
+          </Button>
+        </div>
         
         <div className="flex-1 bg-white/[0.02] border border-white/[0.05] rounded-full h-10 px-3 md:px-5 flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-mono tracking-tight text-zinc-500 group hover:border-[#1793d1]/20 transition-all truncate">
           <ShieldCheck className="w-3.5 h-3.5 text-[#1793d1]/60 transition-colors group-hover:text-[#1793d1] shrink-0" />

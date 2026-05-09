@@ -55,7 +55,6 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
         </div>
 
         <div className="flex items-center gap-6">
-          <div className="text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase opacity-60">NANO BANANA</div>
           <div className="text-[10px] font-bold bg-[#1793d1]/10 px-3 py-1 rounded border border-[#1793d1]/20">
             {formattedDate}
           </div>

@@ -130,31 +130,31 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
               active={activeTab === SECTIONS.EXPERIENCE} 
               onClick={() => navigate(SECTIONS.EXPERIENCE)}
               icon={<Briefcase className="w-4 h-4" />}
-              label="Professional Path"
+              label="Experience"
             />
             <SidebarButton 
               active={activeTab === SECTIONS.PROJECTS} 
               onClick={() => navigate(SECTIONS.PROJECTS)}
               icon={<Code2 className="w-4 h-4" />}
-              label="Artifact Database"
+              label="Projects"
             />
             <SidebarButton 
               active={activeTab === SECTIONS.CERTIFICATIONS} 
               onClick={() => navigate(SECTIONS.CERTIFICATIONS)}
               icon={<Award className="w-4 h-4" />}
-              label="Verified Credentials"
+              label="Certifications"
             />
             <SidebarButton 
               active={activeTab === SECTIONS.SKILLS} 
               onClick={() => navigate(SECTIONS.SKILLS)}
               icon={<Laptop className="w-4 h-4" />}
-              label="Capability Matrix"
+              label="Skills"
             />
             <SidebarButton 
               active={activeTab === SECTIONS.EDUCATION} 
               onClick={() => navigate(SECTIONS.EDUCATION)}
               icon={<GraduationCap className="w-4 h-4" />}
-              label="Academic logs"
+              label="Education"
             />
           </div>
 

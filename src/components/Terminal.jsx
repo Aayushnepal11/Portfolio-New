@@ -62,51 +62,46 @@ export default function Terminal({ onLaunchGUI, onExit }) {
       const fileName = args[0]?.toLowerCase();
       if (!fileName) return ["Error: Argument missing."];
       
-      const dossiers = {
+      const fileSystem = {
         "experience.log": [
-          "[+] Decrypting Experience Dossier...",
-          "- Computer Network Instructor (2025)",
-          "- Freelance Full-Stack Developer (2023)",
-          "- PHP Developer (2022)"
+          "Computer Network Instructor (2025)",
+          "Freelance Full-Stack Developer (2023)",
+          "PHP Developer (2022)"
         ],
         "projects.db": [
-          "[+] Decrypting Project Artifacts...",
-          "- Network Monitor App (Python/Django/Nmap)",
-          "- E-Commerce Security (Django/MySQL/Authz)",
-          "- Secure Email Meta-Analysis (Gmail API)"
+          "Network Monitor App (Python/Django/Nmap)",
+          "E-Commerce Security (Django/MySQL/Authz)",
+          "Secure Email Meta-Analysis (Gmail API)"
         ],
         "certifications.txt": [
-          "[+] Decrypting Credentials...",
-          "- CompTIA Security+",
-          "- ISC2 - Certified In Cyber Security (CC)",
-          "- Google Cybersecurity Professional Certificate",
-          "- Google AI Essentials (Professional Certificate)",
-          "- GitHub Foundation Certificate",
-          "- API Pentesting (APISec University)"
+          "CompTIA Security+",
+          "ISC2 - Certified In Cyber Security (CC)",
+          "Google Cybersecurity Professional Certificate",
+          "Google AI Essentials (Professional Certificate)",
+          "GitHub Foundation Certificate",
+          "API Pentesting (APISec University)"
         ],
         "skills.yml": [
-          "[+] Decrypting Capability Matrix...",
-          "- Vulnerability Analysis: Nessus, CVE Analysis",
-          "- Pentesting: Metasploit, Soloris, RedHawk",
-          "- Network: Cisco GNS3, VLAN, Subnetting",
-          "- OSINT: Google Dorking, Reconnaissance",
-          "- Languages: Python (Security Automation), PHP"
+          "Vulnerability Analysis: Nessus, CVE Analysis",
+          "Pentesting: Metasploit, Soloris, RedHawk",
+          "Network: Cisco GNS3, VLAN, Subnetting",
+          "OSINT: Google Dorking, Reconnaissance",
+          "Languages: Python (Security Automation), PHP"
         ],
         "education.edu": [
-          "[+] Decrypting Academic Records...",
-          "- Bachelor's Degree (BCA) - Divya Gyan College",
-          "- NEB Class 12th - Kathmandu Bernhardt College",
-          "- SEE Class 10th - Laboratory Higher Secondary School"
+          "Bachelor's Degree (BCA) - Divya Gyan College",
+          "NEB Class 12th - Kathmandu Bernhardt College",
+          "SEE Class 10th - Laboratory Higher Secondary School"
         ]
       };
 
-      if (dossiers[fileName]) {
-        return ["[OK] Access Granted.", ...dossiers[fileName]];
+      if (fileSystem[fileName]) {
+        return fileSystem[fileName];
       }
       
       // Check if they forgot the extension but the base name matches
       const baseName = fileName.split('.')[0];
-      const validFiles = Object.keys(dossiers);
+      const validFiles = Object.keys(fileSystem);
       const isBaseMatch = validFiles.some(f => f.startsWith(baseName));
       
       if (isBaseMatch) {

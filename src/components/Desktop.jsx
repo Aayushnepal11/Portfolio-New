@@ -10,10 +10,10 @@ const DesktopIcon = ({ icon: Icon, label, onClick, delay = 0 }) => (
     onClick={onClick}
     className="group flex flex-col items-center gap-1.5 p-4 rounded-xl hover:bg-white/5 transition-all w-24"
   >
-    <div className="w-16 h-16 rounded-2xl bg-[#111]/80 backdrop-blur-md border border-white/5 flex items-center justify-center group-hover:border-[#1793d1]/40 group-hover:bg-[#1793d1]/5 group-hover:shadow-[0_0_25px_rgba(23,147,209,0.15)] transition-all">
-      <Icon className="w-8 h-8 text-zinc-400 group-hover:text-[#1793d1] transition-colors" />
+    <div className="w-16 h-16 rounded-2xl bg-black/90 backdrop-blur-md border border-white/5 flex items-center justify-center group-hover:border-[#4af626]/40 group-hover:bg-[#4af626]/5 group-hover:shadow-[0_0_25px_rgba(74,246,38,0.15)] transition-all lg:group-hover:border-[#1793d1]/40 lg:group-hover:bg-[#1793d1]/5 lg:group-hover:shadow-[0_0_25px_rgba(23,147,209,0.15)]">
+      <Icon className="w-8 h-8 text-zinc-400 group-hover:text-[#4af626] lg:group-hover:text-[#1793d1] transition-colors" />
     </div>
-    <span className="text-[10px] uppercase tracking-[0.25em] font-black text-zinc-600 group-hover:text-[#1793d1] transition-colors text-center">
+    <span className="text-[10px] uppercase tracking-[0.25em] font-black text-zinc-600 group-hover:text-[#4af626] lg:group-hover:text-[#1793d1] transition-colors text-center">
       {label}
     </span>
   </motion.button>
@@ -29,26 +29,29 @@ const ThreatLog = ({ logs }) => {
   }, [logs]);
 
   return (
-    <div className="relative lg:absolute lg:top-16 lg:right-6 w-[260px] md:w-[320px] lg:w-64 h-32 md:h-40 lg:h-48 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-lg overflow-hidden flex flex-col z-40 shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-all duration-500">
-      <div className="px-3 py-1.5 border-b border-white/5 bg-white/5 flex items-center justify-between">
+    <div className="relative lg:absolute lg:top-16 lg:right-6 w-[260px] md:w-[320px] lg:w-64 h-32 md:h-40 lg:h-48 bg-black/95 backdrop-blur-3xl border border-[#4af626]/20 lg:border-white/10 rounded-sm lg:rounded-lg overflow-hidden flex flex-col z-40 shadow-[0_0_40px_rgba(0,255,0,0.1)] lg:shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-all duration-500">
+      <div className="px-3 py-1.5 border-b border-[#4af626]/10 lg:border-white/5 bg-[#4af626]/5 lg:bg-white/5 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Activity className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#1793d1]" />
-          <span className="text-[8px] md:text-[9px] font-bold tracking-widest text-[#1793d1]/80 uppercase">AI Security Agent</span>
+          <Activity className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#4af626] lg:text-[#1793d1]" />
+          <span className="text-[8px] md:text-[9px] font-bold tracking-widest text-[#4af626]/80 lg:text-[#1793d1]/80 uppercase">AI Security Agent</span>
         </div>
         <div className="flex gap-1">
-          <motion.div animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity }} className="w-1 h-1 rounded-full bg-emerald-500" />
+          <motion.div animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity }} className="w-1 h-1 rounded-full bg-[#4af626]" />
         </div>
       </div>
       <div 
         ref={scrollRef}
         className="flex-1 p-2 font-mono text-[7px] md:text-[8px] space-y-1.5 overflow-y-auto scrollbar-hide scroll-smooth"
       >
+        <div className="text-[6px] text-[#4af626]/40 mb-2 uppercase tracking-tighter opacity-50">
+          $ termux_sec_init --user=researcher --node=aayush_nepal
+        </div>
         {logs.map((log, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`flex gap-2 ${log.type === 'attack' ? 'text-rose-500' : 'text-[#1793d1]'}`}
+            className={`flex gap-2 ${log.type === 'attack' ? 'text-rose-500' : 'text-[#4af626] lg:text-[#1793d1]'}`}
           >
             <span className="opacity-40 shrink-0">[{log.time}]</span>
             <span className="font-bold leading-tight">{log.msg}</span>
@@ -110,27 +113,27 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
   }, []);
 
   return (
-    <div className="h-screen bg-[#050505] relative overflow-hidden flex flex-col font-mono text-[#1793d1]">
+    <div className="h-screen bg-[#020202] relative overflow-hidden flex flex-col font-mono text-[#4af626] lg:text-[#1793d1]">
       
       {/* Background Grid Layer */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.05] lg:opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(#1793d1 1px, transparent 1px), linear-gradient(90deg, #1793d1 1px, transparent 1px)`,
-          backgroundSize: '120px 120px'
+          backgroundImage: `linear-gradient(#4af626 1px, transparent 1px), linear-gradient(90deg, #4af626 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
         }}
       />
 
       {/* Top Navigation Bar */}
-      <div className="h-10 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 px-3 md:px-6 flex items-center justify-between z-50">
+      <div className="h-10 bg-black/95 backdrop-blur-md border-b border-[#4af626]/20 lg:border-white/5 px-3 md:px-6 flex items-center justify-between z-50">
         <div className="flex items-center gap-4 md:gap-6">
           <div className="flex items-center gap-2">
             <motion.div 
               animate={battleState === 'attack' ? { scale: [1, 1.2, 1] } : {}}
-              className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${battleState === 'attack' ? 'bg-rose-500 shadow-[0_0_10px_#f43f5e]' : battleState === 'defense' ? 'bg-amber-400' : 'bg-emerald-500'}`}
+              className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${battleState === 'attack' ? 'bg-rose-500 shadow-[0_0_10px_#f43f5e]' : battleState === 'defense' ? 'bg-amber-400' : 'bg-[#4af626]'}`}
             />
-            <span className={`text-[8px] md:text-[10px] font-black tracking-widest uppercase items-center flex gap-1 ${battleState === 'attack' ? 'text-rose-500' : ''}`}>
-               {battleState === 'attack' ? 'CRITICAL_ALERT' : 'NODE_SECURE'}
+            <span className={`text-[8px] md:text-[10px] font-black tracking-widest uppercase items-center flex gap-1 ${battleState === 'attack' ? 'text-rose-500' : 'text-[#4af626] lg:text-[#1793d1]'}`}>
+               {battleState === 'attack' ? 'CRITICAL_ALERT' : 'TERMINAL_SECURE'}
                {battleState === 'attack' && <Zap className="w-2.5 h-2.5 md:w-3 h-3 animate-bounce" />}
             </span>
           </div>
@@ -138,14 +141,14 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-[8px] md:text-[10px] font-bold text-zinc-500 hidden sm:block"
+              className="text-[8px] md:text-[10px] font-bold text-[#4af626]/50 lg:text-zinc-500 hidden sm:block"
             >
-              MITIGATING: {"<< "} <span className="text-[#1793d1] italic underline">{activeThreat.threat}</span> {" >>"}
+              MITIGATING: {"<< "} <span className="text-[#4af626] lg:text-[#1793d1] italic underline font-bold">{activeThreat.threat}</span> {" >>"}
             </motion.div>
           )}
         </div>
 
-        <div className="text-[8px] md:text-[10px] font-bold bg-[#1793d1]/5 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-[#1793d1]/10">
+        <div className="text-[8px] md:text-[10px] font-bold bg-[#4af626]/5 lg:bg-[#1793d1]/5 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-[#4af626]/20 lg:border-[#1793d1]/10 text-[#4af626] lg:text-[#1793d1]">
           {formattedDate}
         </div>
       </div>
@@ -187,14 +190,14 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
         {Array.from({ length: 15 }).map((_, i) => (
           <div
             key={i}
-            className="absolute text-[7px] font-mono text-[#1793d1]/20 select-none animate-[float-particle_25s_linear_infinite]"
+            className="absolute text-[7px] font-mono text-[#4af626]/20 lg:text-[#1793d1]/20 select-none animate-[float-particle_25s_linear_infinite]"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${100 + Math.random() * 20}%`,
               animationDelay: `${Math.random() * 25}s`
             }}
           >
-            {Math.random().toString(16).substring(2, 6).toUpperCase()}
+            0x{Math.random().toString(16).substring(2, 6).toUpperCase()}
           </div>
         ))}
 
@@ -220,46 +223,47 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
       <div className="absolute inset-0 flex flex-col pointer-events-none z-10">
         <motion.div 
           animate={battleState === 'attack' ? { x: [0, -3, 3, -3, 0] } : {}}
-          className="flex flex-col h-full w-full pt-6 md:pt-4 lg:pt-8 pb-6 md:pb-4 lg:pb-10 px-6 md:px-12 items-center md:justify-center md:-translate-y-24 lg:translate-y-0 md:gap-1 lg:gap-2"
+          className="flex flex-col h-full w-full pt-12 md:pt-0 lg:pt-8 pb-10 md:pb-0 lg:pb-10 px-6 md:px-12 items-center justify-center -translate-y-24 md:-translate-y-48 lg:translate-y-0 md:gap-0 lg:gap-2"
         >
           {/* researcher Core Center Piece - Mobile: Top Right, Tablet/Desktop: Center */}
-          <div className="relative group scale-[0.25] sm:scale-[0.4] md:scale-[0.6] lg:scale-100 self-end md:self-center lg:self-auto shrink-0 origin-top-right md:origin-center lg:origin-center mt-2 md:mt-0 lg:mt-0 lg:mb-12">
+          <div className="relative group scale-[0.55] sm:scale-[0.5] md:scale-[0.8] lg:scale-100 self-center md:self-center lg:self-auto shrink-0 origin-center md:origin-center lg:origin-center mt-0 md:mt-0 lg:mt-0 lg:mb-12">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className={`w-64 h-64 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] blur-[80px] md:blur-[120px] lg:blur-[150px] rounded-full transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/15 scale-110' : battleState === 'defense' ? 'bg-[#1793d1]/15 scale-105' : 'bg-[#1793d1]/5'}`} />
+              <div className={`w-64 h-64 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] blur-[80px] md:blur-[120px] lg:blur-[150px] rounded-full transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/15 scale-110' : battleState === 'defense' ? 'bg-[#4af626]/10 lg:bg-[#1793d1]/15 scale-105' : 'bg-[#4af626]/5 lg:bg-[#1793d1]/5'}`} />
             </div>
 
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div 
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                className={`w-[240px] h-[240px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] border border-dashed rounded-full opacity-10 ${battleState === 'attack' ? 'border-rose-400' : 'border-[#1793d1]'}`}
+                className={`w-[240px] h-[240px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] border border-dashed rounded-full opacity-10 ${battleState === 'attack' ? 'border-rose-400' : 'border-[#4af626] lg:border-[#1793d1]'}`}
               />
             </div>
             
-            <div className={`relative w-48 h-48 md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] flex items-center justify-center rounded-full overflow-hidden border transition-colors duration-1000 ${battleState === 'attack' ? 'border-rose-500/30' : 'border-[#1793d1]/20'} bg-black/50 backdrop-blur-xl`}>
-              <div className="absolute inset-0 z-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.05)_50%)] bg-[length:100%_2px] pointer-events-none opacity-50" />
+            <div className={`relative w-48 h-48 md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] flex items-center justify-center rounded-full overflow-hidden border transition-colors duration-1000 ${battleState === 'attack' ? 'border-rose-500/30' : 'border-[#4af626]/20 lg:border-[#1793d1]/20'} bg-black/60 lg:bg-black/50 backdrop-blur-xl`}>
+              <div className="absolute inset-0 z-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] lg:bg-[length:100%_2px] pointer-events-none opacity-50" />
               
               <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full opacity-10">
-                <circle cx="50" cy="50" r="45" stroke={battleState === 'attack' ? '#f43f5e' : '#1793d1'} strokeWidth="0.05" />
-                <circle cx="50" cy="50" r="30" stroke={battleState === 'attack' ? '#f43f5e' : '#1793d1'} strokeWidth="0.05" />
+                <circle cx="50" cy="50" r="45" stroke={battleState === 'attack' ? '#f43f5e' : '#4af626'} strokeWidth="0.1" className="lg:stroke-[0.05] lg:stroke-[#1793d1]" />
+                <circle cx="50" cy="50" r="30" stroke={battleState === 'attack' ? '#f43f5e' : '#4af626'} strokeWidth="0.1" className="lg:stroke-[0.05] lg:stroke-[#1793d1]" />
                 {Array.from({ length: 12 }).map((_, i) => (
                   <motion.line 
                     key={i}
                     x1="50" y1="50"
                     x2={50 + 45 * Math.cos(i * (Math.PI / 6))}
                     y2={50 + 45 * Math.sin(i * (Math.PI / 6))}
-                    stroke={battleState === 'attack' ? '#f43f5e' : '#1793d1'}
-                    strokeWidth="0.02"
+                    stroke={battleState === 'attack' ? '#f43f5e' : '#4af626'}
+                    strokeWidth="0.05"
+                    className="lg:stroke-[0.02] lg:stroke-[#1793d1]"
                     animate={{ opacity: [0.1, 0.4, 0.1] }}
                     transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
                   />
                 ))}
               </svg>
               
-              <svg viewBox="0 0 100 100" className={`w-56 h-56 md:w-[320px] md:h-[320px] fill-none transition-all duration-1000 ${battleState === 'attack' ? 'stroke-rose-500 drop-shadow-[0_0_40px_rgba(244,63,94,0.7)]' : 'stroke-[#1793d1] drop-shadow-[0_0_30px_rgba(23,147,209,0.5)]'}`}>
+              <svg viewBox="0 0 100 100" className={`w-56 h-56 md:w-[320px] md:h-[320px] fill-none transition-all duration-1000 ${battleState === 'attack' ? 'stroke-rose-500 drop-shadow-[0_0_40px_rgba(244,63,94,0.7)]' : 'stroke-[#4af626] drop-shadow-[0_0_30px_rgba(74,246,38,0.5)] lg:stroke-[#1793d1] lg:drop-shadow-[0_0_30px_rgba(23,147,209,0.5)]'}`}>
                 <motion.path 
                   d="M50 12 L85 24 V55 C85 78 50 88 50 88 C50 88 15 78 15 55 V24 L50 12Z" 
-                  className={`stroke-[0.3] transition-all duration-1000 ${battleState === 'defense' ? 'fill-white/10 stroke-[0.8] stroke-white' : 'fill-[#1793d1]/5'}`} 
+                  className={`stroke-[0.3] transition-all duration-1000 ${battleState === 'defense' ? 'fill-white/10 stroke-[0.8] stroke-white' : 'fill-[#4af626]/5 lg:fill-[#1793d1]/5'}`} 
                 />
                 
                 <g className="filter brightness-150">
@@ -291,10 +295,10 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
           </div>
           
           {/* Bottom Content Wrapper (Mobile/Tablet View) */}
-          <div className="text-center space-y-4 md:space-y-2 lg:space-y-12 w-full flex flex-col items-center lg:mt-0">
+          <div className="text-center space-y-6 md:space-y-4 lg:space-y-12 w-full flex flex-col items-center lg:mt-0">
             
             {/* AI Security HUD for Mobile/Tablet (Placed here to avoid overlap) */}
-            <div className="lg:hidden w-full flex justify-center mb-2 md:mb-2">
+            <div className="lg:hidden w-full flex justify-center mb-4 md:mb-2">
                <ThreatLog logs={logs} />
             </div>
 
@@ -317,7 +321,7 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
                     delay: 0.3 + index * 0.05,
                     scale: { duration: 0.2, repeat: battleState === 'attack' ? Infinity : 0 }
                   }}
-                  className={`glitch-text text-3xl sm:text-5xl md:text-7xl lg:text-[10rem] font-display font-black transition-colors duration-1000 tracking-[-0.05em] leading-none cursor-default ${battleState === 'attack' ? 'text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.4)]' : 'text-[#1793d1]'} ${char === " " ? "mr-4 md:mr-10" : ""}`}
+                  className={`glitch-text text-3xl sm:text-5xl md:text-7xl lg:text-[10rem] font-display font-black transition-colors duration-1000 tracking-[-0.05em] leading-none cursor-default ${battleState === 'attack' ? 'text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.4)]' : 'text-[#4af626] lg:text-[#1793d1]'} ${char === " " ? "mr-4 md:mr-10" : ""}`}
                 >
                   {char}
                 </motion.span>
@@ -327,21 +331,21 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
             <motion.div 
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
-               className="flex flex-col items-center gap-3 md:gap-6 w-full"
+               className="flex flex-col items-center gap-2 md:gap-4 w-full"
             >
               <div className="flex items-center justify-center gap-3 md:gap-8 overflow-hidden mx-auto w-full max-w-5xl px-4 md:px-12">
-                <div className={`h-[1px] flex-1 transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/50' : 'bg-[#1793d1]/30'}`} />
+                <div className={`h-[1px] flex-1 transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/50' : 'bg-[#4af626]/30 lg:bg-[#1793d1]/30'}`} />
                 <motion.p 
                   animate={battleState === 'attack' ? { letterSpacing: ["0.3em", "0.15em", "0.3em"] } : { letterSpacing: "0.5em" }}
-                  className={`text-[8px] sm:text-xs md:text-base lg:text-lg font-bold uppercase font-mono tracking-tight whitespace-nowrap transition-colors duration-1000 ${battleState === 'attack' ? 'text-rose-500' : 'text-[#1793d1]/90'}`}
+                  className={`text-[8px] sm:text-xs md:text-base lg:text-lg font-bold uppercase font-mono tracking-tight whitespace-nowrap transition-colors duration-1000 ${battleState === 'attack' ? 'text-rose-500' : 'text-[#4af626]/90 lg:text-[#1793d1]/90'}`}
                 >
                   {battleState === 'attack' ? 'THREAT_SCAN' : 'Cyber Security Researcher'}
                 </motion.p>
-                <div className={`h-[1px] flex-1 transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/50' : 'bg-[#1793d1]/30'}`} />
+                <div className={`h-[1px] flex-1 transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/50' : 'bg-[#4af626]/30 lg:bg-[#1793d1]/30'}`} />
               </div>
               
               <div className="flex gap-4 md:gap-6 items-center">
-                 <div className={`px-2 md:px-4 py-1 text-[7px] md:text-[8px] font-black tracking-widest border transition-all duration-500 ${battleState === 'attack' ? 'border-rose-500 text-rose-500 bg-rose-500/10' : 'border-[#1793d1]/20 text-[#1793d1]/60'}`}>
+                 <div className={`px-2 md:px-4 py-1 text-[7px] md:text-[8px] font-black tracking-widest border transition-all duration-500 ${battleState === 'attack' ? 'border-rose-500 text-rose-500 bg-rose-500/10' : 'border-[#4af626]/20 text-[#4af626]/60 lg:border-[#1793d1]/20 lg:text-[#1793d1]/60'}`}>
                     AI_NEURAL_LINK: ACTIVE
                  </div>
                  {battleState === 'attack' && (
@@ -360,8 +364,11 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
       </div>
 
       {/* Desktop Area Icons */}
-      <div className="flex-1 p-8 grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 relative z-10 overflow-hidden">
-        <div className="flex flex-col gap-4">
+      <div className="flex-1 p-6 md:p-8 grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 relative z-10 overflow-hidden items-end md:items-start group/icons">
+        {/* Mobile Divider Line (Ghosted) */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-[#4af626]/20 to-transparent md:hidden blur-[1px]" />
+        
+        <div className="flex flex-row md:flex-col gap-2 md:gap-4 justify-center md:justify-start">
           <DesktopIcon 
             icon={Monitor}
             label="System" 
@@ -377,7 +384,7 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
         </div>
       </div>
 
-      <div className="scanlines opacity-20" />
+      <div className="scanlines opacity-30 lg:opacity-20" />
     </div>
   );
 }

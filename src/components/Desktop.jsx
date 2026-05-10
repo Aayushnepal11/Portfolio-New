@@ -29,7 +29,7 @@ const ThreatLog = ({ logs }) => {
   }, [logs]);
 
   return (
-    <div className="relative md:absolute md:top-16 md:right-6 w-[260px] md:w-64 h-32 md:h-48 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-lg overflow-hidden flex flex-col z-40 shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-all duration-500">
+    <div className="relative lg:absolute lg:top-16 lg:right-6 w-[260px] md:w-[320px] lg:w-64 h-32 md:h-40 lg:h-48 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-lg overflow-hidden flex flex-col z-40 shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-all duration-500">
       <div className="px-3 py-1.5 border-b border-white/5 bg-white/5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Activity className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#1793d1]" />
@@ -110,7 +110,7 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505] relative overflow-hidden flex flex-col font-mono text-[#1793d1]">
+    <div className="h-screen bg-[#050505] relative overflow-hidden flex flex-col font-mono text-[#1793d1]">
       
       {/* Background Grid Layer */}
       <div 
@@ -217,13 +217,13 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
       </div>
 
       {/* Central Visual: Identity & Core Security Research Center */}
-      <div className="absolute inset-0 flex flex-col pointer-events-none z-10 transition-transform duration-1000">
+      <div className="absolute inset-0 flex flex-col pointer-events-none z-10">
         <motion.div 
           animate={battleState === 'attack' ? { x: [0, -3, 3, -3, 0] } : {}}
-          className="flex flex-col h-full w-full p-6 md:p-12 items-center justify-center md:gap-10 lg:gap-12"
+          className="flex flex-col h-full w-full pt-6 md:pt-4 lg:pt-8 pb-6 md:pb-4 lg:pb-10 px-6 md:px-12 items-center md:justify-center md:-translate-y-24 lg:translate-y-0 md:gap-1 lg:gap-2"
         >
-          {/* researcher Core Center Piece - Mobile: Top Right, Desktop: Center */}
-          <div className="relative group scale-[0.4] sm:scale-65 md:scale-85 lg:scale-100 self-end md:self-auto -mt-10 md:mt-0">
+          {/* researcher Core Center Piece - Mobile: Top Right, Tablet/Desktop: Center */}
+          <div className="relative group scale-[0.25] sm:scale-[0.4] md:scale-[0.6] lg:scale-100 self-end md:self-center lg:self-auto shrink-0 origin-top-right md:origin-center lg:origin-center mt-2 md:mt-0 lg:mt-0 lg:mb-12">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className={`w-64 h-64 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] blur-[80px] md:blur-[120px] lg:blur-[150px] rounded-full transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/15 scale-110' : battleState === 'defense' ? 'bg-[#1793d1]/15 scale-105' : 'bg-[#1793d1]/5'}`} />
             </div>
@@ -290,18 +290,16 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
             </div>
           </div>
           
-          <div className="flex-1" />
-
-          {/* Bottom Content Wrapper (Mobile View) */}
-          <div className="text-center space-y-6 md:space-y-12 mb-10 md:mb-0 w-full flex flex-col items-center">
+          {/* Bottom Content Wrapper (Mobile/Tablet View) */}
+          <div className="text-center space-y-4 md:space-y-2 lg:space-y-12 w-full flex flex-col items-center lg:mt-0">
             
-            {/* AI Security HUD for Mobile (Placed here to avoid overlap) */}
-            <div className="md:hidden w-full flex justify-center mb-4">
+            {/* AI Security HUD for Mobile/Tablet (Placed here to avoid overlap) */}
+            <div className="lg:hidden w-full flex justify-center mb-2 md:mb-2">
                <ThreatLog logs={logs} />
             </div>
 
             {/* AI Security HUD for Desktop (Absolute Positioned elsewhere if not here) */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                <ThreatLog logs={logs} />
             </div>
 
@@ -319,7 +317,7 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
                     delay: 0.3 + index * 0.05,
                     scale: { duration: 0.2, repeat: battleState === 'attack' ? Infinity : 0 }
                   }}
-                  className={`glitch-text text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] font-display font-black transition-colors duration-1000 tracking-[-0.05em] leading-none cursor-default ${battleState === 'attack' ? 'text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.4)]' : 'text-[#1793d1]'} ${char === " " ? "mr-4 md:mr-10" : ""}`}
+                  className={`glitch-text text-3xl sm:text-5xl md:text-7xl lg:text-[10rem] font-display font-black transition-colors duration-1000 tracking-[-0.05em] leading-none cursor-default ${battleState === 'attack' ? 'text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.4)]' : 'text-[#1793d1]'} ${char === " " ? "mr-4 md:mr-10" : ""}`}
                 >
                   {char}
                 </motion.span>
@@ -329,13 +327,13 @@ export default function Desktop({ onOpenTerminal, onOpenGUI }) {
             <motion.div 
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
-               className="flex flex-col items-center gap-4 md:gap-6 w-full"
+               className="flex flex-col items-center gap-3 md:gap-6 w-full"
             >
               <div className="flex items-center justify-center gap-3 md:gap-8 overflow-hidden mx-auto w-full max-w-5xl px-4 md:px-12">
                 <div className={`h-[1px] flex-1 transition-all duration-1000 ${battleState === 'attack' ? 'bg-rose-500/50' : 'bg-[#1793d1]/30'}`} />
                 <motion.p 
-                  animate={battleState === 'attack' ? { letterSpacing: ["0.4em", "0.2em", "0.4em"] } : { letterSpacing: "0.6em" }}
-                  className={`text-[9px] sm:text-xs md:text-base lg:text-lg font-bold uppercase font-mono tracking-tight whitespace-nowrap transition-colors duration-1000 ${battleState === 'attack' ? 'text-rose-500' : 'text-[#1793d1]/90'}`}
+                  animate={battleState === 'attack' ? { letterSpacing: ["0.3em", "0.15em", "0.3em"] } : { letterSpacing: "0.5em" }}
+                  className={`text-[8px] sm:text-xs md:text-base lg:text-lg font-bold uppercase font-mono tracking-tight whitespace-nowrap transition-colors duration-1000 ${battleState === 'attack' ? 'text-rose-500' : 'text-[#1793d1]/90'}`}
                 >
                   {battleState === 'attack' ? 'THREAT_SCAN' : 'Cyber Security Researcher'}
                 </motion.p>

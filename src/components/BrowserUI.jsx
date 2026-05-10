@@ -40,9 +40,9 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
   };
 
   return (
-    <div className="w-full h-screen bg-[#050505] flex flex-col font-sans text-zinc-400 selection:bg-[#1793d1]/30 overflow-hidden">
+    <main className="w-full h-screen bg-[#050505] flex flex-col font-sans text-zinc-400 selection:bg-[#1793d1]/30 overflow-hidden">
       {/* Browser Bar - Refined & Responsive */}
-      <div className="bg-[#0a0a0a] px-4 md:px-6 py-3 flex items-center gap-4 md:gap-6 border-b border-white/[0.03] z-50">
+      <header className="bg-[#0a0a0a] px-4 md:px-6 py-3 flex items-center gap-4 md:gap-6 border-b border-white/[0.03] z-50">
         <div className="flex items-center gap-2">
           <Button 
             variant="ghost" 
@@ -89,11 +89,11 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
             <span className="hidden md:inline">TERMINAL</span>
           </Button>
         )}
-      </div>
+      </header>
 
       <div className="flex flex-1 overflow-hidden relative">
         {/* Sidebar - Desktop */}
-        <div className="hidden md:flex w-72 bg-[#080808] border-r border-white/[0.03] p-6 flex-col gap-1.5 shrink-0">
+        <nav className="hidden md:flex w-72 bg-[#080808] border-r border-white/[0.03] p-6 flex-col gap-1.5 shrink-0">
           <div className="px-2 mb-10 flex flex-col items-center">
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
@@ -163,7 +163,7 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
             <SocialLink href="https://www.linkedin.com/in/aayush-nepal-427957302/" icon={<Linkedin className="w-4 h-4" />} label="Aayush Nepal" />
             <SocialLink href="https://twitter.com/AAYUSHN97018184" icon={<Twitter className="w-3.5 h-3.5" />} label="@AAYUSHN97018184" />
           </div>
-        </div>
+        </nav>
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -196,11 +196,11 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
         </AnimatePresence>
 
         {/* Content Area - Refined Typography and Spacing */}
-        <div className="flex-1 bg-[#050505] overflow-hidden relative">
+        <article className="flex-1 bg-[#050505] overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.03),transparent_50%)] pointer-events-none" />
           <ScrollArea className="h-full w-full">
             <AnimatePresence mode="wait">
-              <motion.div
+              <motion.section
                 key={activeTab}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -214,12 +214,12 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
                 {activeTab === SECTIONS.CERTIFICATIONS && <CertsTab />}
                 {activeTab === SECTIONS.SKILLS && <SkillsTab />}
                 {activeTab === SECTIONS.EDUCATION && <EducationTab />}
-              </motion.div>
+              </motion.section>
             </AnimatePresence>
           </ScrollArea>
-        </div>
+        </article>
       </div>
-    </div>
+    </main>
   );
 }
 

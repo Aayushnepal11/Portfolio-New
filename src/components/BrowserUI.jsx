@@ -160,7 +160,7 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
 
           <div className="mt-auto px-4 py-8 space-y-5 border-t border-white/[0.03]">
             <SocialLink href="https://github.com/Aayushnepal11" icon={<Github className="w-4 h-4" />} label="Aayushnepal11" />
-            <SocialLink href="https://www.linkedin.com/in/aayush-nepal-427957302/" icon={<Linkedin className="w-4 h-4" />} label="aayush-nepal" />
+            <SocialLink href="https://www.linkedin.com/in/aayush-nepal-427957302/" icon={<Linkedin className="w-4 h-4" />} label="Aayush Nepal" />
             <SocialLink href="https://twitter.com/AAYUSHN97018184" icon={<Twitter className="w-3.5 h-3.5" />} label="@AAYUSHN97018184" />
           </div>
         </div>
@@ -187,9 +187,9 @@ export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTermi
               </div>
               
               <div className="mt-auto pt-8 border-t border-white/[0.05] space-y-6">
-                <SocialLink href="https://github.com/Aayushnepal11" icon={<Github className="w-5 h-5" />} label="GitHub" />
-                <SocialLink href="https://www.linkedin.com/in/aayush-nepal-427957302/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn" />
-                <SocialLink href="https://twitter.com/AAYUSHN97018184" icon={<Twitter className="w-5 h-5" />} label="X (Twitter)" />
+                <SocialLink href="https://github.com/Aayushnepal11" icon={<Github className="w-5 h-5" />} label="GitHub: Aayushnepal11" />
+                <SocialLink href="https://www.linkedin.com/in/aayush-nepal-427957302/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn: Aayush Nepal" />
+                <SocialLink href="https://twitter.com/AAYUSHN97018184" icon={<Twitter className="w-5 h-5" />} label="X: @AAYUSHN97018184" />
               </div>
             </motion.div>
           )}

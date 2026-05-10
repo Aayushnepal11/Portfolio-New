@@ -47,16 +47,17 @@ export default function Terminal({ onLaunchGUI, onExit }) {
       onExit();
       return ["Terminating session..."];
     },
-    ls: () => ["experience.log", "projects.db", "certifications.txt", "skills.yml", "education.edu"],
+    ls: () => ["experience.log", "projects.db", "certifications.txt", "skills.yml", "education.edu", "contact.txt"],
     gui: () => {
       onLaunchGUI();
       return ["Opening visual interface..."];
     },
     contact: () => [
       "CONTACT INFO:",
-      "Email: nepalaayush88@gmail.com",
-      "Tel: +977.9861001374",
-      "Web: github.com/aayushnepal"
+      "Email:    nepalaayush88@gmail.com",
+      "GitHub:   github.com/Aayushnepal11",
+      "LinkedIn: linkedin.com/in/aayush-nepal-427957302",
+      "X:        x.com/AAYUSHN97018184"
     ],
     cat: (args) => {
       const fileName = args[0]?.toLowerCase();
@@ -92,6 +93,12 @@ export default function Terminal({ onLaunchGUI, onExit }) {
           "Bachelor's Degree (BCA) - Divya Gyan College",
           "NEB Class 12th - Kathmandu Bernhardt College",
           "SEE Class 10th - Laboratory Higher Secondary School"
+        ],
+        "contact.txt": [
+          "Email:    nepalaayush88@gmail.com",
+          "GitHub:   github.com/Aayushnepal11",
+          "LinkedIn: linkedin.com/in/aayush-nepal-427957302",
+          "X:        x.com/AAYUSHN97018184"
         ]
       };
 

@@ -16,7 +16,8 @@ export default function ProjectsTab() {
       name: "Network Monitor App",
       tags: ["Python", "Django", "Nmap", "React"],
       desc: "Built to observe and report on network activity, featuring integrated Nmap for detailed port scanning.",
-      role: "Lead security developer"
+      role: "Lead security developer",
+      url: "https://github.com/Aayushnepal11/Network-Monitor-Final"
     },
     {
       name: "E-Commerce Security",

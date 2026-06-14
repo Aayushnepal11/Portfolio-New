@@ -28,14 +28,32 @@ const SECTIONS = {
 };
 
 export default function BrowserUI({ onBackToTerminal, onBackToDesktop, hideTerminalButton, isMobile }) {
-  const [activeTab, setActiveTab] = useState(SECTIONS.SUMMARY);
+  const [activeTab, setActiveTab] = useState(() => {
+    try {
+      return localStorage.getItem('portfolio_active_tab') || SECTIONS.SUMMARY;
+    } catch (e) {
+      return SECTIONS.SUMMARY;
+    }
+  });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const baseLocation = window.location.origin + window.location.pathname;
-  const [url, setUrl] = useState(`${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${SECTIONS.SUMMARY}`);
+  const [url, setUrl] = useState(() => {
+    try {
+      const initialTab = localStorage.getItem('portfolio_active_tab') || SECTIONS.SUMMARY;
+      return `${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${initialTab}`;
+    } catch (e) {
+      return `${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${SECTIONS.SUMMARY}`;
+    }
+  });
 
   const navigate = (id) => {
     setActiveTab(id);
     setUrl(`${baseLocation}${baseLocation.endsWith('/') ? '' : '/'}${id}`);
+    try {
+      localStorage.setItem('portfolio_active_tab', id);
+    } catch (e) {
+      // ignore silently
+    }
     setIsMobileMenuOpen(false);
   };
 

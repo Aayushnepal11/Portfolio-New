@@ -5,7 +5,13 @@ import Desktop from './components/Desktop';
 import { AnimatePresence, motion } from 'motion/react';
 
 export default function App() {
-  const [view, setView] = useState('desktop'); // 'desktop', 'terminal', or 'gui'
+  const [view, setView] = useState(() => {
+    try {
+      return localStorage.getItem('portfolio_view') || 'desktop';
+    } catch (e) {
+      return 'desktop';
+    }
+  }); // 'desktop', 'terminal', or 'gui'
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileNotice, setShowMobileNotice] = useState(false);
 
@@ -17,6 +23,14 @@ export default function App() {
     }
     setView('terminal');
   };
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('portfolio_view', view);
+    } catch (e) {
+      // ignore silently
+    }
+  }, [view]);
 
   useEffect(() => {
     const checkMobile = () => {

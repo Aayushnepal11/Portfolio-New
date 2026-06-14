@@ -4,33 +4,57 @@ import { motion } from 'motion/react';
 export default function ExperienceTab() {
   const data = [
     {
-      title: "Computer Network Instructor",
-      comp: "Educational Institute",
-      date: "Mar 2025 - Jul 2025",
+      title: "Computer Network Instructor (TA)",
+      comp: "Divya Gyan College",
+      date: "2024 – 2025",
+      desc: "Assisted in academic and practical network administration teaching",
       points: [
-        "Simulated core protocols (SSH, HTTP, SNMP) via GNS3.",
-        "Guided students on Cisco Configuration (FLSM, VLSM, CIDR notation).",
-        "Instructed security tools: Kali Linux, XG Firewalls, Burp Suite."
+        "Assisted in teaching computer networking concepts, including TCP/IP, routing, and security fundamentals.",
+        "Guided students in practical labs and hands-on security tasks.",
+        "Helped develop curriculum content focused on network defense and monitoring."
       ]
     },
     {
-      title: "Freelance Full-Stack Developer",
-      comp: "Self-Employed",
-      date: "Apr 2023 - May 2023",
+      title: "Network Penetration Tester",
+      comp: "Divya Gyan College",
+      date: "2023 – 2024",
+      desc: "Conducted institutional network assessment and remediation planning",
       points: [
-        "Architected Django applications for email data visualization.",
-        "Engineered Gmail API integrations for secure metadata analysis.",
-        "Collaborated via Git/GitHub for synchronized deployment."
+        "Performed penetration testing on institutional networks, including web applications and Active Directory.",
+        "Discovered misconfigurations and privilege escalation opportunities in Linux and Windows servers.",
+        "Prepared detailed security assessment reports with remediation steps."
       ]
     },
     {
-      title: "PHP Developer",
-      comp: "Web Tech",
-      date: "Sep 2022 - Mar 2023",
+      title: "Information Security Officer",
+      comp: "One Cover Pvt. Ltd.",
+      date: "2022 – 2023",
+      desc: "Managed endpoint protection and real-time threat analysis",
       points: [
-        "Implemented Incremental SDLC for dynamic web applications.",
-        "Engineered responsive frontends using HTML5, SCSS, and Bootstrap.",
-        "Managed branch strategies for iterative feature rollout."
+        "Managed Kaspersky Cloud Security Suite for enterprise security monitoring and endpoint protection.",
+        "Implemented fraud detection measures to protect digital assets and customer data.",
+        "Conducted vulnerability assessments and recommended mitigation strategies."
+      ]
+    },
+    {
+      title: "PHP Developer & Application Security Intern",
+      comp: "Divya Gyan College",
+      date: "2021 – 2022",
+      desc: "Developed applications with strict focus on secure SDLC integration",
+      points: [
+        "Developed PHP applications with a focus on secure coding practices.",
+        "Assisted in conducting application security assessments to identify vulnerabilities.",
+        "Implemented fixes for SQL injection, XSS, and authentication flaws."
+      ]
+    },
+    {
+      title: "PHP Developer Intern",
+      comp: "Iners Tech",
+      date: "2019 – 2021",
+      desc: "Built foundational programming modules and logic validations",
+      points: [
+        "Developed PHP applications with a focus on secure coding practices.",
+        "Implemented logic validations and safety modules within core development flows."
       ]
     }
   ];
@@ -59,9 +83,15 @@ export default function ExperienceTab() {
                 <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-[#1793d1] transition-colors">{item.title}</h3>
                 <span className="text-[#1793d1]/60 font-mono text-[10px] md:text-xs uppercase tracking-widest font-bold bg-[#1793d1]/5 px-3 py-1 rounded-full border border-[#1793d1]/10 self-start md:self-auto">{item.date}</span>
               </div>
-              <p className="text-[#1793d1]/60 text-xs font-mono uppercase tracking-[0.2em] font-bold mb-4">{item.comp}</p>
+              <p className="text-[#1793d1]/60 text-xs font-mono uppercase tracking-[0.2em] font-bold">{item.comp}</p>
               
-              <ul className="grid grid-cols-1 gap-3 mt-4">
+              {item.desc && (
+                <p className="text-zinc-400 text-sm italic font-light tracking-wide mt-1 mb-2">
+                  {item.desc}
+                </p>
+              )}
+              
+              <ul className="grid grid-cols-1 gap-3 mt-2">
                 {item.points.map((p, j) => (
                   <li key={j} className="text-[13px] text-zinc-500 leading-relaxed font-light flex gap-3">
                     <span className="text-[#1793d1]/20 shrink-0 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">▹</span>

@@ -18,12 +18,6 @@ export default function ProjectsTab() {
       desc: "Built to observe and report on network activity, featuring integrated Nmap for detailed port scanning.",
       role: "Lead security developer",
       url: "https://github.com/Aayushnepal11/Network-Monitor-Final"
-    },
-    {
-      name: "E-Commerce Security",
-      tags: ["Django", "MySQL", "Authz"],
-      desc: "Full-functional platform with robust user authentication, authorization, and secure payment integrations.",
-      role: "Full-Stack Security Dev"
     }
   ];
 

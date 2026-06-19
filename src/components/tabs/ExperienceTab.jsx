@@ -6,7 +6,7 @@ export default function ExperienceTab() {
     {
       title: "Computer Network Instructor (TA)",
       comp: "Divya Gyan College",
-      date: "2024 – 2025",
+      date: "May 2024 – June 2025",
       desc: "Assisted in academic and practical network administration teaching",
       points: [
         "Assisted in teaching computer networking concepts, including TCP/IP, routing, and security fundamentals.",
@@ -17,44 +17,12 @@ export default function ExperienceTab() {
     {
       title: "Network Penetration Tester",
       comp: "Divya Gyan College",
-      date: "2023 – 2024",
+      date: "May 2023 – April 2024",
       desc: "Conducted institutional network assessment and remediation planning",
       points: [
         "Performed penetration testing on institutional networks, including web applications and Active Directory.",
         "Discovered misconfigurations and privilege escalation opportunities in Linux and Windows servers.",
         "Prepared detailed security assessment reports with remediation steps."
-      ]
-    },
-    {
-      title: "Information Security Officer",
-      comp: "One Cover Pvt. Ltd.",
-      date: "2022 – 2023",
-      desc: "Managed endpoint protection and real-time threat analysis",
-      points: [
-        "Managed Kaspersky Cloud Security Suite for enterprise security monitoring and endpoint protection.",
-        "Implemented fraud detection measures to protect digital assets and customer data.",
-        "Conducted vulnerability assessments and recommended mitigation strategies."
-      ]
-    },
-    {
-      title: "PHP Developer & Application Security Intern",
-      comp: "Divya Gyan College",
-      date: "2021 – 2022",
-      desc: "Developed applications with strict focus on secure SDLC integration",
-      points: [
-        "Developed PHP applications with a focus on secure coding practices.",
-        "Assisted in conducting application security assessments to identify vulnerabilities.",
-        "Implemented fixes for SQL injection, XSS, and authentication flaws."
-      ]
-    },
-    {
-      title: "PHP Developer Intern",
-      comp: "Iners Tech",
-      date: "2019 – 2021",
-      desc: "Built foundational programming modules and logic validations",
-      points: [
-        "Developed PHP applications with a focus on secure coding practices.",
-        "Implemented logic validations and safety modules within core development flows."
       ]
     }
   ];

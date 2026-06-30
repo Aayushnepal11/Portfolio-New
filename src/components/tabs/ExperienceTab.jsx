@@ -6,7 +6,7 @@ export default function ExperienceTab() {
     {
       title: "Computer Network Instructor (TA)",
       comp: "Divya Gyan College",
-      date: "May 2024 – June 2025",
+      date: "May 2024 – Current",
       desc: "Assisted in academic and practical network administration teaching",
       points: [
         "Assisted in teaching computer networking concepts, including TCP/IP, routing, and security fundamentals.",
